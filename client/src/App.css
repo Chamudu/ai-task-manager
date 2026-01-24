@@ -1,0 +1,111 @@
+
+.app-container {
+    max-width: 800px;
+    width: 100%;
+    padding: 2rem;
+    text-align: center;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.task-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: left;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+.task-card:hover {
+    transform: translateY(-4px) ease;
+    box-shadow: 0 10px 20px var(--accent-glow);
+    border-color: var(--accent-color);
+    transition: border-color 0.8s ease;
+
+}
+
+.task-card h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+}
+.ai-text {
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+    background: var(--text-bg);
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 99px;
+    margin: 0;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 2rem;
+}
+
+input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    color: var(--text-primary);
+    font-size: 1rem;
+    outline: none;
+    transition: 0.5s ease;
+}
+
+input:focus {
+    border-color: var(--accent-color);
+    transition: 0.5s ease;
+}
+
+button {
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: none;
+    background: var(--accent-color);
+    color: var(--text-dark);
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.delete-btn {
+    background: transparent;
+    color: var(--text-secondary);
+    border: none;
+    font-size: 1.2rem;
+    padding: 0 8px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    color: var(--btn-close);
+    background: var(--btn-bg)
+}
+
+.edit-input {
+    flex: 1;
+    background: var(--card-bg);
+    border: 1px solid var(--accent-color);
+    border-radius: 6px;
+    padding: 8px;
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    font-weight: 700;
+    outline: none;
+}

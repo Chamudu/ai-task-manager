@@ -1,0 +1,29 @@
+:root {
+    --bg-dark: #0f172a;
+    --card-bg: #1e293b;
+    --card-border: #ffffff1a;;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-dark: #0f172a;
+    --text-bg: #38bdf81a;
+    --accent-color: #38bdf8;
+    --accent-glow: #38bdf833;
+
+    --btn-close: #ef4444;
+    --btn-bg: #ef44441a;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+h1, h2 {
+    font-weight: 700;
+    letter-spacing: -0.05em;
+}
