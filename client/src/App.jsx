@@ -10,6 +10,7 @@ function App() {
   const [newTaskTitle, setNewTaskTitle] = useState("");
   const [editingId, setEditingId] = useState(null);
   const [editedText, setEditedText] = useState("");
+  const [aiMode, setAiMode] = useState('local');
 
   useEffect(() => {
     fetch(`${API_URL}`)
@@ -32,8 +33,10 @@ function App() {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({title: newTaskTitle })
-      /* Correct syntax: key: value */
+      body: JSON.stringify({
+        title: newTaskTitle,
+        aiMode: aiMode
+       })
     })
     .then(res => res.json())
     .then(savedTask => {
@@ -80,6 +83,18 @@ function App() {
     <div className="app-container">
       <h1>AI Task Manager</h1>
       <p>Server Status: <strong>{message}</strong></p>
+
+      <div className="ai-mode-selector">
+        <label htmlFor='ai-Mode'> AI Mode: </label>
+        <select
+          id='ai-mode'
+          value={aiMode}
+          onChange={(e) => setAiMode(e.target.value)}
+        >
+          <option value="local">⚡ Local Rules (Fast) </option>
+          <option value="smart">🧠 Smart AI (Gemini)</option>
+        </select>
+      </div>
 
       <div className="input-group">
         <input
