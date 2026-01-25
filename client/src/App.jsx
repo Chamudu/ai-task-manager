@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react'
 import './App.css'
+import GradientButton from './components/GradientButton';
+import Loader from './components/Loader'; 
+
 
 const API_URL = `http://localhost:3000`;
 
@@ -28,22 +31,41 @@ function App() {
   const addTask = () => {
     if (!newTaskTitle) return;
 
+    const tempTask = {
+      id: Date.now(), // tempary id
+      title: newTaskTitle,
+      aiSuggestion: aiMode === 'smart' ? '🤔 AI is thinking...' : `Generating 
+        suggestion...`,
+      isLoading: true
+    }
+
+    setTasks([tempTask, ...tasks]);
+    setNewTaskTitle('');
+
     fetch(`${API_URL}/tasks`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        title: newTaskTitle,
+        title: tempTask.title,
         aiMode: aiMode
        })
     })
+
     .then(res => res.json())
     .then(savedTask => {
-      setTasks([...tasks, savedTask]);
-      setNewTaskTitle("")
+      setTasks(currentTasks => 
+        currentTasks.map(t => 
+          t.id === tempTask.id ? { ...savedTask, isLoading: false } : t
+        )
+      );
     })
-    .catch(err => console.error("Error adding task:", err))
+
+    .catch(error => {
+      console.error("Error adding task:", error);
+      setTasks(currentTasks => currentTasks.filter(t => t.id !== tempTask.id));
+    });
   }
 
   const deleteTask = (id) => {
@@ -85,20 +107,27 @@ function App() {
       <p>Server Status: <strong>{message}</strong></p>
 
       <div className="ai-mode-selector">
-        <label htmlFor='ai-Mode'> AI Mode: </label>
-        <select
-          id='ai-mode'
-          value={aiMode}
-          onChange={(e) => setAiMode(e.target.value)}
-        >
-          <option value="local">⚡ Local Rules (Fast) </option>
-          <option value="smart">🧠 Smart AI (Gemini)</option>
-        </select>
+        <span className='ai-Mode'> AI Mode: </span>
+        <div className="mode-buttons">
+          <GradientButton
+            onClick={()=>setAiMode('local')}
+            isActive={aiMode === 'local'}
+          >
+            ⚡ Local AI (Fast) 
+          </GradientButton>
+          <GradientButton
+            onClick={() => setAiMode('smart')}
+            isActive={aiMode === 'smart'}
+          >
+            🧠 Smart AI (Gemini)
+          </GradientButton>
+        </div>
       </div>
 
       <div className="input-group">
         <input
           type='text'
+          id='task-input'
           placeholder='Add anew Task...'
           value={newTaskTitle}
           onChange={(e) => setNewTaskTitle(e.target.value)}
@@ -141,8 +170,16 @@ function App() {
 
             </div>
             
-            <p className='ai-text'>✨ {task.aiSuggestion}</p>
-
+            <p className={`ai-text ${task.isLoading ? 'loading' : ''}`}>
+              {task.isLoading ? (
+                <span className="loading-container">
+                  <Loader size={0.5} />
+                  <span>{task.aiSuggestion}</span>
+                </span>
+              ) : (
+                <>✨ {task.aiSuggestion}</>
+              )}
+            </p>
           </div>
         ))}
       </div>
