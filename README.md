@@ -1,4 +1,4 @@
-# 🚀 AI-Powered Task Manager
+# AI-Powered Task Manager
 
 A modern, full-stack Task Management application that uses AI to break down complex tasks into actionable sub-steps.
 
@@ -9,7 +9,7 @@ A modern, full-stack Task Management application that uses AI to break down comp
 
 This project demonstrates a full-stack web architecture using **React (Vite)** for the frontend and **Node.js (Express)** for the backend. The key differentiator is the "AI Copilot" feature, which analyzes task titles and suggests helpful breakdowns or context to improve productivity.
 
-### ✨ Key Features
+### Key Features
 - **Modern UI/UX:** Glassmorphism design, dark mode, and smooth micro-interactions.
 - **REST API:** Custom-built Node.js/Express backend handling CRUD operations.
 - **Real-time Updates:** Instant state management without page reloads.
@@ -28,7 +28,7 @@ This project demonstrates a full-stack web architecture using **React (Vite)** f
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 To run this project locally, you need Node.js installed.
 
@@ -56,7 +56,7 @@ npm run dev
 
 ---
 
-## 🏗️ Architecture Design
+## Architecture Design
 
 ### Folder Structure
 The project uses a Monorepo approach for easier development synchronization.
@@ -90,7 +90,7 @@ ai-task-manager/
 
 ---
 
-## 💡 Lessons Learned
+## Lessons Learned
 *Documenting key technical challenges faced during development.*
 - **CORS Policies:** Learned how to configure Express middleware to allow cross-origin requests between Vite (5173) and Express (3000).
 - **State Management:** Implemented optimistic UI updates to make the app feel instant before the server responds.
